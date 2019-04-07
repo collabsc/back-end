@@ -1,0 +1,17 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.scheduling.annotation.Async;
+
+@RepositoryRestResource
+public interface ProjectRestRepository extends CrudRepository<Project , Long> {
+	@Async
+	@Query("FROM Project p where p.userid = :userid")
+	List<Project> findProjectByUserId(@Param("userid") Integer id);
+}
+
