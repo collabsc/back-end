@@ -20,6 +20,20 @@ public class User {
 	private String major;
 	private String phonenumber;
 	private String resumeurl;
+	
+	public User(String fname , String lname , String email, String password, Integer classstanding , String major , String phonenumber , String resumeurl) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.classstanding = classstanding;
+        this.major = major;
+        this.phonenumber = phonenumber;
+        this.resumeurl = resumeurl;
+    }
+	
+	public User() {}
+
 	public Long getId() {
 		return id;
 	}
