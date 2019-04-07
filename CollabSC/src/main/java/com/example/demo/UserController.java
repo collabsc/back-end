@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +40,11 @@ public class UserController {
 	@RequestMapping(value = "/users" , method=RequestMethod.POST)
 	User newUser(@RequestBody User newUser) {
 		return repository.save(newUser);
+	}
+	
+	@DeleteMapping(value = "/users/{id}")
+	void deleteUser(@PathVariable Long id){
+		repository.deleteById(id);
 	}
 	
 }
