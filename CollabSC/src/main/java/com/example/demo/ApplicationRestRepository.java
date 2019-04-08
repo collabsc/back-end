@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface ApplicationRestRepository extends CrudRepository<Application , Long> {
-	@Query ("FROM Application a WHERE a.userid = :userid")
+	@Query("FROM Application a WHERE a.userid = :userid")
 	List<Application> findApplicationByUserId(@Param("userid") Integer id);
 }

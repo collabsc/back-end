@@ -25,11 +25,24 @@ public class ApplicationController {
 		Iterable<Application> it = repository.findAll();
 		List<Application> applications = new ArrayList<Application>();
 		it.forEach(applications::add);
+		System.out.println(applications.size());
 		return applications;		
 	}
 	
 	@GetMapping("/applications/{userid}")
 	List<Application> getApplication(@PathVariable("userid") Integer userid) {
+//		List<Application> applications = all();
+//		System.out.println("run");
+//		for (Application app : applications) {
+//			if (app.getUserid() == userid)
+//				System.out.println(app.getUserid());
+//		}
+//		if (!applications.isEmpty())
+//			return applications;
+//		else
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND , "applicaiton with "
+//					+ userid + " do not exist");
+			
 		if (!repository.findApplicationByUserId(userid).isEmpty())
 			return repository.findApplicationByUserId(userid);
 		else

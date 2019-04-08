@@ -1,8 +1,6 @@
 package com.example.demo;
 
 import java.util.List;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
