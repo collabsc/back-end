@@ -3,7 +3,6 @@ package com.example.demo;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,20 +12,18 @@ import javax.persistence.Id;
 public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long applicationid;
+	private Long id;
 	
 	private Integer projectid;
 	private Integer userid;
 	@ElementCollection(targetClass=String.class)
 	private List<String> applicationquestions;
 	private String timestamp;
-	
-	public Long getApplicationid() {
-		return applicationid;
+	public Long getId() {
+		return id;
 	}
-	
-	public void setApplicationid(Long applicationid) {
-		this.applicationid = applicationid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Integer getProjectid() {
 		return projectid;
@@ -52,6 +49,7 @@ public class Application {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
+	
 	
 	
 }
