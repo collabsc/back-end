@@ -43,6 +43,22 @@ Back-end system for CollabSC. Uses Spring Boot framework and H2 database to mana
 
 ## GET Endpoints
 
+### /users
+- *Description*
+  - Returns JSON of all User information.
+- *Parameters*
+  - none
+- *Return Format*
+  - object 
+    - 'fname' - first name
+    - 'lname' - last name
+    - 'email' - email address
+    - 'password'
+    - 'classStanding' - current academic year as string
+    - 'major'
+    - 'phone number' – as string
+    - 'resume url'
+
 ### /users/{id}
 - *Description*
   - Returns JSON of User information given a valid user id.
@@ -59,4 +75,13 @@ Back-end system for CollabSC. Uses Spring Boot framework and H2 database to mana
   - 'resume url'
 - *Error*
   -404 thrown when User does not exist
+  
+## DELETE Endpoints
 
+### /users/{id}
+- *Description*
+  - Delets user of given Id
+- *Parameters*
+  - none
+- *Return Format*
+  - none
