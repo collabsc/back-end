@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -54,6 +56,29 @@ public class ProjectController {
 	void deleteProject(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
+	
+	@RequestMapping (value = "/addUser" , method=RequestMethod.POST)
+	void addUser(@RequestBody HashMap<Long , Long> map) {
+		Iterable<Project> iter = repository.findAll();
+		List<Project> projects = new ArrayList<Project>();
+		iter.forEach(projects::add);
+		
+		Iterator<Long> itr = map.keySet().iterator();
+		List<Long> keys = new ArrayList<Long>();
+		while (itr.hasNext()) {
+			Long key = itr.next();
+			keys.add(key);
+		}
+		
+		for (int i = 0 ; i < keys.size() ; i++) {
+			for (int j = 0 ; j < projects.size() ; j++) {
+				if (projects.get(i).getId() == keys.get(i)) {
+					projects.get(i).addAppliedId(map.get(keys.get(i)));
+				}
+			}
+		}
+	}
+
 }
 
 	

@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +19,11 @@ public class Project {
 	private String projectdetails;
 	private String applicationdeadline;
 	private Integer numapplications;
+	
+	@ElementCollection(targetClass=Integer.class)
+	private List<Long> appliedids;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +60,14 @@ public class Project {
 	public void setNumapplications(Integer numapplications) {
 		this.numapplications = numapplications;
 	}
-	
-	
+	public List<Long> getAppliedIds(){
+		return appliedids;
+	}
+	public void setAppliedIds(List<Long> appliedids) {
+		this.appliedids = appliedids;
+	}
+	public void addAppliedId(Long id) {
+		appliedids.add(id);
+	}
+		
 }

@@ -12,4 +12,3 @@ public interface ProjectRestRepository extends CrudRepository<Project , Long> {
 	@Query("FROM Project p WHERE p.userid = :userid")
 	List<Project> findProjectByUserId(@Param("userid") Integer id);
 }
-
