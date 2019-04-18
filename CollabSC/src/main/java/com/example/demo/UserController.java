@@ -6,15 +6,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UserController {
 
@@ -46,7 +51,7 @@ public class UserController {
 //	}
 	
 	@RequestMapping(value = "/register" , method=RequestMethod.POST)
-	HashMap<String , Boolean> newUser(@RequestBody User newUser) {
+	HashMap<String , Boolean> newUser(@ModelAttribute User newUser) {
 		boolean emailMatch = false;
 		Iterable<User> it = repository.findAll();
 		List<User> users = new ArrayList<User>();
@@ -66,7 +71,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login" , method=RequestMethod.POST)
-	HashMap<String , Long> loginUser(@RequestBody HashMap<String , String> payload){
+	HashMap<String , Long> loginUser(@RequestParam HashMap<String , String> payload){
 		String email = payload.get("email");
 		String password = payload.get("password");
 		Iterable<User> it = repository.findAll();
