@@ -15,3 +15,73 @@ Back-end system for CollabSC. Uses Spring Boot framework and H2 database to mana
 8. REST calls to ‘http://localhost:8080/’ are now functional, and can be accessed through the HTTP methods POST, GET, and DELETE.
 
 
+## POST Endpoints
+
+### /login
+- *Description*
+  -return boolean JSON if user email and password exist in database.
+- *Parameters*
+  - 'email'
+  - 'password'
+- *Return Format*
+  - 'success' — set to true if the user exists and false is user does not exist
+  
+### /register
+- *Description*
+  - Registers a user if the user email is currently not in the database.
+- *Parameters*
+  - 'fname' - first name
+  - 'lname' - last name
+  - 'email' - email address
+  - 'password'
+  - 'classStanding' - current academic year as string
+  - 'major'
+  - 'phone number' – as string
+  - 'resume url'
+- *Return Format*
+  - 'success' — set to true if the user exists and false is user does not exist
+
+## GET Endpoints
+
+### /users
+- *Description*
+  - Returns JSON of all User information.
+- *Parameters*
+  - none
+- *Return Format*
+  - object 
+    - 'fname' - first name
+    - 'lname' - last name
+    - 'email' - email address
+    - 'password'
+    - 'classStanding' - current academic year as string
+    - 'major'
+    - 'phone number' – as string
+    - 'resume url'
+
+### /users/{id}
+- *Description*
+  - Returns JSON of User information given a valid user id.
+- *Parameters*
+  - none
+- *Return Format*
+   - 'fname' - first name
+  - 'lname' - last name
+  - 'email' - email address
+  - 'password'
+  - 'classStanding' - current academic year as string
+  - 'major'
+  - 'phone number' – as string
+  - 'resume url'
+- *Error*
+  -404 thrown when User does not exist
+  
+## DELETE Endpoints
+
+### /users/{id}
+- *Description*
+  - Delets user of given Id
+- *Parameters*
+  - none
+- *Return Format*
+  - none
