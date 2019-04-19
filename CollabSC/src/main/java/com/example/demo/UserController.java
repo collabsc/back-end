@@ -51,40 +51,49 @@ public class UserController {
 //	}
 	
 	@RequestMapping(value = "/register" , method=RequestMethod.POST)
-	HashMap<String , Boolean> newUser(@ModelAttribute User newUser) {
+	HashMap<String , Object> newUser(@ModelAttribute User newUser) {
 		boolean emailMatch = false;
 		Iterable<User> it = repository.findAll();
 		List<User> users = new ArrayList<User>();
 		it.forEach(users::add);
+		Long id = new Long(-1);
 		for (User u : users) {
-			if (u.getEmail().equals(newUser.getEmail())) 
+			if (u.getEmail().equals(newUser.getEmail())) {
 				emailMatch = true;
+				id = u.getId();
+			}
 		}
-		HashMap<String, Boolean> hm = new LinkedHashMap<String , Boolean>();
+		HashMap<String, Object> hm = new LinkedHashMap<String , Object>();
 		if (!emailMatch) {
 			repository.save(newUser);
 			hm.put("success", new Boolean(true));
+			hm.put("userId" , newUser.getId());
 		}
-		else
+		else {
 			hm.put("success", new Boolean(false));
+			hm.put("userId" , -1);
+		}
 		return hm;
 	}
 	
 	@RequestMapping(value = "/login" , method=RequestMethod.POST)
-	HashMap<String , Long> loginUser(@RequestParam HashMap<String , String> payload){
+	HashMap<String , Object> loginUser(@RequestParam HashMap<String , String> payload){
 		String email = payload.get("email");
 		String password = payload.get("password");
 		Iterable<User> it = repository.findAll();
 		List<User> users = new ArrayList<User>();
 		it.forEach(users::add);
-		HashMap<String, Long> hm = new LinkedHashMap<String , Long>();
+		HashMap<String, Object> hm = new LinkedHashMap<String , Object>();
 
 		for (User u : users) {
 			if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
+				hm.put("success", new Boolean(true));
 				hm.put("userId" , u.getId());
 				return hm;
 			}
 		}
+		hm.put("success", new Boolean(false));
+
 		return hm;
 
 	}
