@@ -95,7 +95,6 @@ public class UserController {
 		hm.put("success", new Boolean(false));
 
 		return hm;
-
 	}
 	
 	
